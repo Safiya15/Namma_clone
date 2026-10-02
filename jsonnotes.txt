@@ -1,0 +1,511 @@
+json.loads() --> json string into pyhton object
+json.dumps() --> pyhton object into json string
+
+json.load()  -> read json data from a file and convert it into a python object
+json.dump() -> write a python object into a file as json data
+
+import json
+
+# Example of json.loads()
+
+json_string = '{"name": "John", "age": 30, "city": "New York"}'
+python_object = json.loads(json_string)
+print(python_object)  # Output: {'name': 'John', 'age': 30, 'city': 'New York'}
+
+# Example of json.dumps()
+
+python_dict = {"name": "Alice", "age": 25, "city": "Los Angeles"}
+json_string = json.dumps(python_dict)
+print(json_string)  # Output: {"name": "Alice", "age": 25, "city": "Los Angeles"}
+
+# Example of json.load() and json.dump()
+
+with open('data.json', 'w') as file:
+	json.dump(python_dict, file)
+
+
+
+	//Day 8
+
+How data is think.. how to think about data.4
+
+//day 9
+Numpy
+
+desighned for fast numerical computations, especially with large arrays and matrices. 
+It provides a powerful data structure called ndarray, which is a multi-dimensional array that can hold elements of the same type. 
+Numpy also offers a wide range of mathematical functions to operate on these arrays efficiently.
+
+
+
+python list vs numpy array
+
+1. Numpy arrays are faster than Python lists for numerical operations because they are implemented in C and optimized for performance.
+
+2. Numpy stores data in a contiguous block of memory, which allows for efficient access and manipulation, while Python lists are more flexible but can be slower due to their dynamic nature.
+
+3. uses less memory than Python lists because they are more compact and do not require additional overhead for storing metadata.
+
+4. built in mathematical functions that can operate on entire arrays at once, while Python lists require explicit loops for similar operations.
+
+5. Supports direct vectorized operations, allowing for element-wise computations without the need for explicit loops, while Python lists require manual iteration for such operations.
+
+python me extra meta data store hota hai list ke sath, jaise ki size, type, etc. Numpy arrays me ye metadata nahi hota, isliye wo zyada memory efficient hote hain.
+
+
+numpy datatypes
+
+1) Integer : int32, int 64, int16, int8
+2) Floating point nums: float32, float 32
+3) Boolean : Bool
+4) Complex nums: complex64, complex128
+5) String : S (byte-str) & U(unicode-str)
+6) object : generic python objects-object
+
+
+functions in numpy
+
+Aggregation
+
+sum() 
+prod()
+min()
+max()
+mean()
+std()       standard deviation
+var()          variance
+median()
+argmin()
+argmax()    return index
+
+
+
+power
+
+square()
+sqrt()
+pow(a,b)
+
+
+log & Exponential
+
+log()
+log10()
+log2()
+exp()
+
+
+Rounding
+
+round()
+floor()
+ceil()
+trunc()
+
+
+Extas
+
+unique()
+sort()
+abs()
+
+
+
+
+
+#Day 10 pandas
+
+1) define the problem
+2) Data Collection
+3) EDA
+4) Data cleaning & pre-processing
+5) feature Engineering
+6) Modeling
+7) Evaluation
+8) Deployement
+
+
+EDA --> Exploratory data Analysis  (paterns and structure)
+
+1)load and structure
+2) clean data
+3) statistical summary
+4) data visualization           --metplotlib  --seaborn
+
+
+
+pandas --> Data Analysis and manipulation tool
+
+import pandas as pd
+
+-------->Series and dataframe
+
+
+series --> 1d labled array
+dataframe  --> 2d labled array
+
+Series
+
+1) series are homogenous
+2) vectorized operations
+3) handle missing values with NAN
+4) mutable valaues, immutable size
+
+
+using pandas with json and csvs files
+
+Dataframe methods
+
+df.head()
+df.tail()
+df.sample()
+df.info()
+df.shape
+df.describe()
+df.columns()
+df.nunique()
+
+
+indexing and selecting Data
+
+select columns
+select Rows(Label &Inex based) -loc & iloc
+select single scalar value -at & iat
+
+Filterring the data
+
+*) query() rules
+
+. Expression as a String
+. column based refrence
+. Backticks for col_name with space or special chars
+. operators (&,|,-,>=,<=,==,etc)
+. chained comparisons
+
+
+cleaning data       1) null value        2) deduplication       etc
+
+Handle Missing values       
+
+. isnUll() / isna()
+. isnull().sum()
+. dropna()
+. fillna(value)
+. ffill()           -> forward fill
+. bfill()
+
+
+Handle duplicate values
+
+duplicated()
+drop_duplicates()
+
+
+Hnadle Data Types and data time
+
+. dtypes
+. astype(newType)
+.to_datetime()
+
+
+Handle Strings
+
+.str.lower(),
+.str.strip()
+.str.split("")
+.str.contains(val,case=False)
+
+day 11
+
+Transform data to do feature Engineering
+
+. apply(function) 
+. map()
+. assign()
+. replace(old,new)
+
+
+.rename(column={old:new})
+.sort_values()
+.sort_index()
+.rank()
+.reset_index()
+.Reorder columns
+
+
+Task --> shift id column to the end
+
+
+Grouping and Aggregation of data
+
+.groupby()
+.mean/sum/max/min/count etc
+.agg()
+
+
+
+
+Melt and pivot
+
+Melt ---> Wide to Long format           
+melt(id_vars, value_vars,var_name,value_name)
+      keep       unpivot   new col_name  new col_value
+
+
+Pivot --> Long to wide format
+
+pivot(index, columns,valuse)
+        Keep
+
+
+
+Basic visualization in pandas
+
+hist()
+plot()
+
+
+merging and joining data
+
+inner join
+left join
+right join
+outer join
+
+
+Data concatenation
+
+stacking dataframes on top of each other (row) or side (columns)
+
+
+Day 14
+
+DATABASE MYSQL
+
+Transaction --> series of operations
+
+ACID 
+
+A--> Atomacity  (all stament suceed or none suceed)
+c--> Consistency  (Data moves from one valid state to another)
+I-->Isolation       (parallel Transaction dont interfere)
+D-->Durability      (Committed data is permanently)
+
+
+start Transaction;
+
+update accounts set balance = balance - 50 where id = 2;
+update accounts set balance = balance + 50 where id = 2;
+
+commit;
+
+
+
+
+Views --> virtual table based on the result-set of an sql statement
+
+create View v as
+select col1, col2 from table_name;
+
+Indexes --> are special database objects that make data retrieval faster.
+
+create index i on table_name(col1,col2);
+
+show index from table;
+drop index i on table;
+
+api ---> 
+
+web ---> BeautifulSoup, ixml, Seleniumm, Playwright, etc
+
+
+requets --> used to download the webpage i.e html
+BeautifulSoup --> parse and extracts data from html (usefull for static HTML)
+                                                                we use requets and BeautifulSoup together
+
+
+Seleniumm --> Automate A browser to load dynamic js pages --option alternative to (requsts + BeautifulSoup) in case of dynamic websites.
+
+
+
+
+soup..
+
+find()       -->first matching element
+find_all()
+find_parent()
+find_next()
+find_previous()
+
+
+#css selecters
+.select()
+.select_one()
+
+#attributes
+get()
+.attrs()
+
+
+
+navigating dom
+
+.parent()
+.children()
+.descendants
+.next_sibling()
+.previous_sibling()
+
+
+day 18
+
+
+DATA visualization
+
+how to plot? --> define the problem,     less noise(clean data),    story telling,         clarity(use units, lables, scale)
+
+metplotlib
+
+
+pyplot --> drawing toolkit
+
+import metplotlib.pyplot as plt
+
+
+.title()
+.xlabel()
+.ylabel()
+.legend()
+
+
+Format Strings --> consists os a part for color, marker and line
+
+fmt - '[marker][line][color]'
+
+
+.color
+.marker
+.linestyle
+.line width
+
+style.available
+style.used()
+grid()
+tight_layout()
+savefig("abc.png")
+
+
+plot methods
+
+plt.plot(x,y)      --line plot     
+plt.bar(x,height)  --vertical bar chart
+plt.barh(y,width)  --horizontal bar chart
+plt.scatter(x,y)   --scatter plot
+plt.pie(data)      --pie chart
+plt.hist(data,bins)--histogram
+plt.boxplot(data)  --box plot
+
+
+1) plt.bar(x,height)  --vertical bar chart
+
+.plt.text()  --> (x-axis pos,y-axis pos, text,alignment)
+.xlim, .ylim   --> used to increase of decrease the width or hight of graph
+
+
+2) plt.scatter(x,y)   --scatter plot
+
+used to--
+.corelation
+.outliees
+.clusters
+
+
+--------------
+.colors
+.size
+.marker
+.transparenecy
+.colormap
+
+Annotations
+
+plt.annotate("text",xy=(x_points,y_points),xytext=(x_text,y_text))
+
+
+plt.pie(data)      --pie chart
+
+autopct="%1.1f%%"  --shows percentage of each slice
+colors 
+wedgeprops      --define(edgecolors,linewidth,linestyle,alpha,fill..)
+explode         --highlights a slice by pulling it oute
+startangle      --rotate the chart
+shadow          --adds 3d effects or makes the chart circular
+
+
+
+
+day 19     --->Seaborn
+
+metplotlib ----> low level work
+Seaborn    -----> high level details
+
+1) inbuilt datasets
+2) high level features
+3) great support for pandas datasets (dataframes)
+4) boxplots, heatmaps,
+
+
+
+Box ---plots
+
+is a statistical visualization taht summarizes the distribution of a dataset using five key numbers:
+
+minimum  (lowest non-outliner)
+first quartile  (25%)
+median
+thier quartile  (75%)
+maximum     (highest non-outliner)
+
+
+Wishkers and outliners
+
+
+object oriented Api in metplotlib 
+
+fg , ax = plt.subplots()
+
+
+
+day 23
+
+ML is part of CS where we teach computers to learn from data, find patterns and make decision or predictions.
+
+.supervised  --> labled data --> (ip/op well defined)  --> problems 1) classification (email spam or not)    2) regression (predictions of continues value)
+.unsupervised -->  unlabled data --> output not known only input --> problem...1) clustering (related data ko sath me cluster karke patten find karna) (iphone + charger)
+.reinforcement learning  --> goal oriented learning (well defined target)  (rewards and penalty)
+
+>supervised learning
+
+1) regression (predictions of continues numerical values)
+   weather, aqi, stock, score, cars price
+
+2) classification
+   email spam, cat dog, pateints data(harmul tumor, non-harmul)
+
+   > two output --> binary classification
+   > more then two --> multi class classification
+   > ek hi value ko multiple output de skte --->>>> multi label classification
+
+
+Scikit-learn
+
+sklearn is an open source ml library that supports supervised and unsupervised learning
+
+Algorithms
+
+> Linear regression    --> regression
+> Logistic regression   --> classification
+> KNN----> K nearest neighbors
+> decision Trees   --> R/C
+> Naive Bayes      ---> C
+> SVM etc.         --> R/C
